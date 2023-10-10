@@ -5,6 +5,8 @@ from PUT import *
 from PATCH import *
 from DELETE import *
 
+url = "https://jsonplaceholder.typicode.com/"
+
 def list():
     print("List:")
     print("\t1) Show all posts")
@@ -29,12 +31,17 @@ def modify(id, attribute)
 def delete(id)
     
 """Requests"""
-def GET()
+def GET():
+    url = "https://jsonplaceholder.typicode.com/"
     
-def POST()
+def POST():
+    url = "https://jsonplaceholder.typicode.com/"
     
-def PUT()
+def PUT():
+    url = "https://jsonplaceholder.typicode.com/"
     
-def PATCH()
+def PATCH():
+    url = "https://jsonplaceholder.typicode.com/"
     
-def DELETE()
+def DELETE():
+    url = "https://jsonplaceholder.typicode.com/"
