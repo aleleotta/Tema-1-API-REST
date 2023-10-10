@@ -1,3 +1,4 @@
+import requests
 from GET import *
 from POST import *
 from PUT import *
@@ -14,6 +15,7 @@ def list():
     print("\t6) Delete a post")
     print("\t0) Exit program")
 
+"""Functions"""
 def show()
     
 def show(id)
@@ -25,3 +27,14 @@ def modify(id)
 def modify(id, attribute)
     
 def delete(id)
+    
+"""Requests"""
+def GET()
+    
+def POST()
+    
+def PUT()
+    
+def PATCH()
+    
+def DELETE()
