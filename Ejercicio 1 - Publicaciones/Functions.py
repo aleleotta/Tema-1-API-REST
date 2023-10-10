@@ -33,6 +33,7 @@ def delete(id)
 """Requests"""
 def GET():
     url = "https://jsonplaceholder.typicode.com/"
+    response = requests.get(url)
     
 def POST():
     url = "https://jsonplaceholder.typicode.com/"
