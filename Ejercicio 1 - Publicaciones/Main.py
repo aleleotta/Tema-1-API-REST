@@ -11,11 +11,11 @@ while option != 0:
         show(id)
     if option == 3:
         add()
-    """if option == 4:
-        mofidy()
+    if option == 4:
+        modifyAll()
     if option == 5:
         modify()
     if option == 6:
-        delete()"""
+        delete()
     if option == 0:
         print("Have a nice day!")
