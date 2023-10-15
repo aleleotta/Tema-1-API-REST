@@ -1,22 +1,21 @@
 from Functions import *
 
-dictionary = {}
 option = 10
 print("Welcome!")
 while option != 0:
     list()
-    option = int(print("Choose an option: "))
+    option = int(input("Choose an option: "))
     if option == 1:
-        show()
+        showAll()
     if option == 2:
-        show()
+        show(id)
     if option == 3:
         add()
-    if option == 4:
+    """if option == 4:
         mofidy()
     if option == 5:
         modify()
     if option == 6:
-        delete()
+        delete()"""
     if option == 0:
         print("Have a nice day!")

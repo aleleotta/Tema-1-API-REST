@@ -1,11 +1,7 @@
 import requests
-from GET import *
-from POST import *
-from PUT import *
-from PATCH import *
-from DELETE import *
 
-url = "https://jsonplaceholder.typicode.com/"
+#url = "https://jsonplaceholder.typicode.com/"
+dictionary = {}
 
 def list():
     print("List:")
@@ -18,31 +14,63 @@ def list():
     print("\t0) Exit program")
 
 """Functions"""
-def show()
+def showAll():
+    GET()
     
-def show(id)
+def show(id):
+    id = int(input("Introduce the ID: "))
+    GET1(id)
     
-def add()
+def add():
+    userId = int(input("Introduce a user ID: "))
+    id = int(input("Introduce an ID: "))
+    title = input("Introduce a title: ")
+    body = input("Introduce a whole text: ")
+    POST(userId, id, title, body)
     
-def modify(id)
+#def modify()
     
-def modify(id, attribute)
+#def modify(id, attribute)
     
-def delete(id)
+#def delete(id)
     
 """Requests"""
 def GET():
-    url = "https://jsonplaceholder.typicode.com/"
+    url = "https://jsonplaceholder.typicode.com/posts"
     response = requests.get(url)
+    print("Status code: ", response.status_code)
+    print(response.json())
+
+def GET1(id):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    chosenId = "/" + str(id)
+    url = url + chosenId
+    response = requests.get(url)
+    print("Status code: ", response.status_code)
+    print(response.json())
     
-def POST():
-    url = "https://jsonplaceholder.typicode.com/"
+def POST(userId1, id1, title1, body1):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    post = {'userId': userId1, 'id': id1, 'title': title1, 'body': body1}
+    response = requests.post(url, json=post)
+    if response.status_code == 201:
+        dictionary.update(post)
+        print("Status code: ", response.status_code)
+        print(response.json())
+    else:
+        print("The post couldn't get uploaded.")
     
-def PUT():
-    url = "https://jsonplaceholder.typicode.com/"
+def PUT(id):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    print("Status code: ", response.status_code)
+    print(response.json())
     
-def PATCH():
-    url = "https://jsonplaceholder.typicode.com/"
+def PATCH(id, attribute):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    print("Status code: ", response.status_code)
+    print(response.json())
     
-def DELETE():
-    url = "https://jsonplaceholder.typicode.com/"
+def DELETE(id):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    print("Status code: ", response.status_code)
+    print(response.json())
