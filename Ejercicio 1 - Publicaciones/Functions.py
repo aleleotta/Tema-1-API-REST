@@ -28,23 +28,19 @@ def add(): #Adds a new post into the JSON file.
     POST(userId, id, title, body)
     
 def modifyAll(): #Modifies all attributes of a single post through PUT.
-    print("Introduce the data of the post below to modify.")
-    userId = int(input("User ID: "))
+    print("Introduce the ID of the data you want to modify: ")
     id = int(input("ID: "))
+    print("Introduce the data of the post below to modify.")
     title = input("Title: ")
     body = input("Body: ")
-    PUT(userId, id, title, body)
+    PUT(id, title, body)
     
 def modify(): #Modifies a single attribute in a single post.
     id = int(input("Introduce the ID of the instance to modify: "))
-    attributeType = int(input("What attribute do you want to modify? 1) User ID 2) ID 3) Title 4) Body")) #Parameter for PATCH function to indicate attribute to modify.
+    attributeType = int(input("What attribute do you want to modify? 1) Title 2) Body")) #Parameter for PATCH function to indicate attribute to modify.
     if attributeType == 1:
-        attribute = int(input("UserID: "))
-    if attributeType == 2:
-        attribute = int(input("ID: "))
-    if attributeType == 3:
         attribute = input("Title: ")
-    if attributeType == 4:
+    if attributeType == 2:
         attribute = input("Body: ")
     PATCH(id, attributeType, attribute)
     
@@ -83,11 +79,11 @@ def POST(userId1, id1, title1, body1):
     else:
         print("The post couldn't get uploaded.")
     
-def PUT(userId1, id1, title1, body1):
+def PUT(id1, title1, body1):
     url = "https://jsonplaceholder.typicode.com/posts"
     chosenId = "/" + str(id1) #Updates current path to indicate which post the id is referring to.
     url = url + chosenId
-    update = {'userId': userId1, 'id': id1, 'title': title1, 'body': body1}
+    update = {'title': title1, 'body': body1}
     response = requests.put(url, json=update)
     print("Status code: ", response.status_code)
     if response.status_code == 200: #Checking for correct code, if not the same code than it displays an error message.
@@ -100,12 +96,8 @@ def PATCH(id1, attributeType, attribute):
     chosenId = "/" + str(id1) #Updates current path to indicate which post the id is referring to.
     url = url + chosenId
     if attributeType == 1:
-        update = {'userId': attribute}
-    if attributeType == 2:
-        update = {'id': attribute}
-    if attributeType == 3:
         update = {'title': attribute}
-    if attributeType == 4:
+    if attributeType == 2:
         update = {'body': attribute}
     response = requests.patch(url, json=update)
     print("Status code: ", response.status_code)
