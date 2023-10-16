@@ -88,7 +88,7 @@ def PUT(userId1, id1, title1, body1):
     update = {'userId': userId1, 'id': id1, 'title': title1, 'body': body1}
     response = requests.put(url, json=update)
     print("Status code: ", response.status_code)
-    if response.status_code == 201:
+    if response.status_code == 200:
         print(response.json())
     else:
         print("The post couldn't get updated.")
@@ -107,7 +107,7 @@ def PATCH(id1, attributeType, attribute):
         update = {'body': attribute}
     response = requests.patch(url, json=update)
     print("Status code: ", response.status_code)
-    if response.status_code == 201:
+    if response.status_code == 200:
         print(response.json())
     else:
         print("The post couldn't get updated.")
