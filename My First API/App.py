@@ -21,7 +21,7 @@ def getCountry(id):
     for country in countries:
         if country["id"] == id:
             return country, 200
-    return {"error": "Country not found!"}, 404
+    return {"error": "The following country was not found!"}, 404
 
 def findNextId():
     return max(country["id"] for country in countries) + 1
@@ -33,7 +33,38 @@ def addCountry():
         country["id"] = findNextId()
         countries.append(country)
         return country, 201
-    return {"error": "Request must be JSON!"}, 415
+    return {"error": "Request must be a JSON file!"}, 415
+
+@app.put("/countries/<int:id>")
+def modifyCountry(id):
+    if request.is_json:
+        newCountry = request.get_json()
+        for country in countries:
+            if country["id"] == id:
+                for attribute in newCountry:
+                    country[attribute] = newCountry[attribute]
+                    return country, 200
+    return {"error": "Request must be a JSON file!"}
+
+@app.put("/countries/<int:id>")
+@app.patch("/countries/<int:id>")
+def modifyCountry(id):
+    if request.is_json:
+        newCountry = request.get_json()
+        for country in countries:
+            if country["id"] == id:
+                for attribute in newCountry:
+                    country[attribute] = newCountry[attribute]
+                    return country, 200
+    return {"error": "Request must be a JSON file!"}
+
+@app.delete("/countries/<int:id>")
+def deleteCountry(id):
+    for country in countries:
+        if country["id"] == id:
+            countries.remove(country)
+            return {}, 200
+    return {"error": "The following country was not found!"}, 404
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5050)
