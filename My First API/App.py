@@ -43,7 +43,7 @@ def modifyCountry(id):
             if country["id"] == id:
                 for attribute in newCountry:
                     country[attribute] = newCountry[attribute]
-                    return country, 200
+                return country, 200
     return {"error": "Request must be a JSON file!"}
 
 @app.put("/countries/<int:id>")
@@ -55,7 +55,7 @@ def modifyCountry(id):
             if country["id"] == id:
                 for attribute in newCountry:
                     country[attribute] = newCountry[attribute]
-                    return country, 200
+                return country, 200
     return {"error": "Request must be a JSON file!"}
 
 @app.delete("/countries/<int:id>")
