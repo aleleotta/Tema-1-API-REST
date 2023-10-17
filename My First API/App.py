@@ -48,7 +48,7 @@ def modifyCountry(id):
 
 @app.put("/countries/<int:id>")
 @app.patch("/countries/<int:id>")
-def modifyCountry(id):
+def modifyCountryAtt(id):
     if request.is_json:
         newCountry = request.get_json()
         for country in countries:
