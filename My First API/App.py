@@ -72,9 +72,10 @@ def modifyCountryAtt(id):
 
 @app.delete("/countries/<int:id>")
 def deleteCountry(id):
-    for country in countries:
+    for country in file:
         if country["id"] == id:
-            countries.remove(country)
+            file.remove(country)
+            writeFile(file)
             return {}, 200
     return {"error": "The following country was not found!"}, 404
 
