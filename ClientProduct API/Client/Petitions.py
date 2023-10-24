@@ -1,6 +1,6 @@
 import requests
 
-url = ""
+url = "http://localhost:5050/"
 
 def GET():
     pass
