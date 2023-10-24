@@ -1,0 +1,3 @@
+CLIENT buys PRODUCTS:
+CLIENT(id, dni, name, lastName, phoneNumber, email)
+PRODUCT(id, name, description, price, clientId)
