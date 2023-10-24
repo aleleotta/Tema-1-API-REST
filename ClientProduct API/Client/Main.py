@@ -8,8 +8,9 @@ while option != 0:
         option = int(input("Introduce an option from above: "))
     except:
         print("The option must be an integer!")
+        continue
     if option == 1:
-        pass
+        GET()
     elif option == 2:
         pass
     elif option == 3:
