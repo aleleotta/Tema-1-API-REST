@@ -10,7 +10,7 @@ def readFile():
     file.close()
     return countries
 
-file = readFile()
+file = readFile() #Optional
 
 def writeFile(countries):
     file = open(fileName, "w")
