@@ -1,4 +1,3 @@
-from Functions import *
 from Petitions import *
 
 option = 10
@@ -23,7 +22,6 @@ while option != 0:
         print("Have a great day!")
     else:
         print("Please introduce a valid option!")
-
 
 def list():
     print("CRUD List:")
