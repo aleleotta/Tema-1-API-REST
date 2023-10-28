@@ -102,10 +102,35 @@ def POST():
             print("The product already exixts within the JSON file.")
 
 def PUT():
-    pass
+    type = 0
+    while type != 1 and type != 2:
+        try:
+            type = int(input("Would you like to update a client or a product? 1) Client 2) Product"))
+            if type != 1 and type != 2:
+                print("Please introduce a valid option!")
+        except:
+            print("You must introduce an integer!")
+    if type == 1:
+        url = url + "clients/"
+    elif type == 2:
+        url = url + "products/"
 
 def PATCH():
-    pass
+    type = 0
+    while type != 1 and type != 2:
+        try:
+            type = int(input("Would you like to update a client or a product? 1) Client 2) Product"))
+            if type != 1 and type != 2:
+                print("Please introduce a valid option!")
+        except:
+            print("You must introduce an integer!")
 
 def DELETE():
-    pass
+    type = 0
+    while type != 1 and type != 2:
+        try:
+            type = int(input("Would you like to delete a client or a product? 1) Client 2) Product"))
+            if type != 1 and type != 2:
+                print("Please introduce a valid option!")
+        except:
+            print("You must introduce an integer!")
