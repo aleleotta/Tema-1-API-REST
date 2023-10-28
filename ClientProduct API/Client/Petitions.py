@@ -57,7 +57,7 @@ def POST():
         url = url + "clients/"
         clients = requests.get(url).json()
         dni = input("Introduce DNI: ")
-        name = input("Intoroduce name: ")
+        name = input("Introduce name: ")
         lastName = input("Introduce last name: ")
         phoneNumber = int(input("Introduce phone number: "))
         email = input("Introduce email: ")
@@ -73,6 +73,7 @@ def POST():
             print("Status code: ", response.status_code)
             if response.status_code == 201:
                 print(response.json())
+                print("The client has been posted.")
             else:
                 print("The client was unable to get posted.")
         else:
@@ -96,6 +97,7 @@ def POST():
             print("Status code: ", response.status_code)
             if response.status_code == 201:
                 print(response.json())
+                print("The product has been posted.")
             else:
                 print("The product was unable to get posted.")
         else:
@@ -111,9 +113,47 @@ def PUT():
         except:
             print("You must introduce an integer!")
     if type == 1:
-        url = url + "clients/"
+        baseUrl = url + "clients/"
+        id = int(input("Which client would you like to update: "))
+        url = url + str(id)
+        clients = requests.get(baseUrl).json()
+        found = False
+        for client in clients:
+            if client["id"] == id:
+                found = True
+                break
+        name = input("Introduce name: ")
+        lastName = input("Introduce last name: ")
+        phoneNumber = int(input("Introduce phone number: "))
+        email = input("Introduce email: ")
+        client = {'name': name, 'lastName': lastName, 'phoneNumber': phoneNumber, 'email': email}
+        response = requests.put(url, json=client)
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print(response.json)
+            print("The product has been updated.")
+        else:
+            print("The client couldn't get updated or was not found.")
     elif type == 2:
-        url = url + "products/"
+        baseUrl = url + "products/"
+        id = int(input("Which product would you like to update: "))
+        url = url + str(id)
+        products = requests.get(baseUrl).json()
+        found = False
+        for product in products:
+            if product["id"] == id:
+                found = True
+                break
+        description = input("Introduce description: ")
+        price = float(input("Introduce price: "))
+        clientID = int(input("Introduce client ID: "))
+        product = {'description': description, 'price': price, 'clientID': clientID}
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print(response.json)
+            print("The product has been updated.")
+        else:
+            print("The product couldn't get updated or was not found.")
 
 def PATCH():
     type = 0
