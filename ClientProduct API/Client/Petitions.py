@@ -164,6 +164,75 @@ def PATCH():
                 print("Please introduce a valid option!")
         except:
             print("You must introduce an integer!")
+    if type == 1:
+        baseUrl = url + "clients/"
+        id = int(input("Which client would you like to update: "))
+        url = url + str(id)
+        clients = requests.get(baseUrl).json()
+        found = False
+        for client in clients:
+            if client["id"] == id:
+                found = True
+                break
+        attribute = 0
+        while attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
+            try:
+                attribute = int(input("Which attribute would you like to update? 1) Name 2) Last name 3) Phone number 4) Email"))
+                if attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
+                    print("Please introduce a valid option!")
+            except:
+                print("You must introduce an integer!")
+        if attribute == 1:
+            name = input("Introduce name: ")
+            client = {'name': name}
+        elif attribute == 2:
+            lastName = input("Introduce last name: ")
+            client = {'lastName': lastName}
+        elif attribute == 3:
+            phoneNumber = int(input("Introduce phone number: "))
+            client = {'phoneNumber': phoneNumber}
+        elif attribute == 4:
+            email = input("Introduce email: ")
+            client = {'email': email}
+        response = requests.put(url, json=client)
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print(response.json)
+            print("The product has been updated.")
+        else:
+            print("The client couldn't get updated or was not found.")
+    elif type == 2:
+        baseUrl = url + "products/"
+        id = int(input("Which product would you like to update: "))
+        url = url + str(id)
+        products = requests.get(baseUrl).json()
+        found = False
+        for product in products:
+            if product["id"] == id:
+                found = True
+                break
+        while attribute != 1 and attribute != 2 and attribute != 3:
+            try:
+                attribute = int(input("Which attribute would you like to update? 1) Description 2) Price 3) Client ID"))
+                if attribute != 1 and attribute != 2 and attribute != 3:
+                    print("Please introduce a valid option!")
+            except:
+                print("You must introduce an integer!")
+        if attribute == 1:
+            description = input("Introduce description: ")
+            product = {'description': description}
+        elif attribute == 2:
+            price = float(input("Introduce price: "))
+            product = {'price': price}
+        elif attribute == 3:
+            clientID = int(input("Introduce client ID: "))
+            product = {'clientID': clientID}
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print(response.json)
+            print("The product has been updated.")
+        else:
+            print("The product couldn't get updated or was not found.")
 
 def DELETE():
     type = 0
