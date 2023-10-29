@@ -148,6 +148,7 @@ def PUT():
         price = float(input("Introduce price: "))
         clientID = int(input("Introduce client ID: "))
         product = {'description': description, 'price': price, 'clientID': clientID}
+        response = requests.put(url, json=product)
         print("Status code: ", response.status_code)
         if response.status_code == 200:
             print(response.json)
@@ -194,7 +195,7 @@ def PATCH():
         elif attribute == 4:
             email = input("Introduce email: ")
             client = {'email': email}
-        response = requests.put(url, json=client)
+        response = requests.patch(url, json=client)
         print("Status code: ", response.status_code)
         if response.status_code == 200:
             print(response.json)
@@ -227,6 +228,7 @@ def PATCH():
         elif attribute == 3:
             clientID = int(input("Introduce client ID: "))
             product = {'clientID': clientID}
+        response = requests.patch(url, json=product)
         print("Status code: ", response.status_code)
         if response.status_code == 200:
             print(response.json)
@@ -243,3 +245,37 @@ def DELETE():
                 print("Please introduce a valid option!")
         except:
             print("You must introduce an integer!")
+    if type == 1:
+        url = url + "clients/"
+        id = 0
+        while id <= 0:
+            try:
+                id = int(input("Introduce the ID of the client you would like to delete: "))
+                if id <= 0:
+                    print("Please introduce a valid ID.")
+            except:
+                print("You must introduce an integer!")
+        url = url + str(id)
+        response = requests.delete(url)
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print("The client was successfully deleted.")
+        else:
+            print("The client wasn't found.")
+    elif type == 2:
+        url = url + "products/"
+        id = 0
+        while id <= 0:
+            try:
+                id = int(input("Introduce the ID of the product you would like to delete: "))
+                if id <= 0:
+                    print("Please introduce a valid ID.")
+            except:
+                print("You must introduce an integer!")
+        url = url + str(id)
+        response = requests.delete(url)
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print("The product was successfully deleted.")
+        else:
+            print("The product wasn't found.")
