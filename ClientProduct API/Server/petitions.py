@@ -1,6 +1,5 @@
 from flask import *
 from run import *
-import json
 
 file1 = readFile1()
 file2 = readFile2()
