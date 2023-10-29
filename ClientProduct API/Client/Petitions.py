@@ -1,5 +1,4 @@
 import requests
-import json
 
 url = "http://localhost:5050/"
 clientsFile = "ClientProduct API\\JSON\\Client.json"
