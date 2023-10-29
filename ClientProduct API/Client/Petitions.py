@@ -6,10 +6,18 @@ productsFile = "ClientProduct API\\JSON\\Product.json"
 
 def GET():
     global url
-    response = requests.get(url).json()
+    url = "http://localhost:5050/clients"
+    response = requests.get(url)
     print("Status code: ", response.status_code)
     if response.status_code == 200:
-        print(response.json)
+        print(response.json())
+    else:
+        print("The JSON file couldn't be read or found.")
+    url = "http://localhost:5050/products"
+    response = requests.get(url)
+    print("Status code: ", response.status_code)
+    if response.status_code == 200:
+        print(response.json())
     else:
         print("The JSON file couldn't be read or found.")
 
@@ -33,6 +41,12 @@ def GET1():
             except:
                 print("You must introduce an integer!")
         url = url + "clients/" + str(id)
+        response = requests.get(url)
+        print("Status code: ", response.status_code)
+        if response.status_code == 200:
+            print(response.json())
+        else:
+            print("The JSON file couldn't be read or found.")
     elif type == 2:
         while id <= 0:
             try:
@@ -42,10 +56,10 @@ def GET1():
             except:
                 print("You must introduce an integer!")
         url = url + "products/" + str(id)
-    response = requests.get(url).json()
+    response = requests.get(url)
     print("Status code: ", response.status_code)
     if response.status_code == 200:
-        print(response.json)
+        print(response.json())
     else:
         print("The JSON file couldn't be read or found.")
 
@@ -61,7 +75,7 @@ def POST():
             print("You must introduce an integer!")
     if type == 1:
         url = url + "clients/"
-        clients = requests.get(url).json()
+        clients = requests.get(url)
         dni = ""
         while len(dni) != 9:
             try:
@@ -71,8 +85,9 @@ def POST():
             except:
                 print("Please introduce a valid DNI!")
         found = False
-        i = len(clients) + 1
+        i = 1
         for client in clients:
+            i = i + 1
             if client["dni"] == dni:
                 found = True
                 break
@@ -121,14 +136,15 @@ def POST():
             print("The product already exixts within the JSON file.")
     elif type == 2:
         url = url + "products/"
-        products = requests.get(url).json()
+        products = requests.get(url)
         name = input("Introduce name: ")
         description = input("Introduce description: ")
         price = float(input("Introduce price: "))
         clientID = int(input("Introduce client ID: "))
         found = False
-        i = len(products) + 1
+        i = 1
         for product in products:
+            i = i + 1
             if product["name"] == name:
                 found = True
                 break
@@ -164,7 +180,7 @@ def PUT():
             except:
                 print("You must introduce an integer!")
         url = url + str(id)
-        clients = requests.get(baseUrl).json()
+        clients = requests.get(baseUrl)
         found = False
         for client in clients:
             if client["id"] == id:
@@ -220,7 +236,7 @@ def PUT():
             except:
                 print("You must introduce an integer!")
         url = url + str(id)
-        products = requests.get(baseUrl).json()
+        products = requests.get(baseUrl)
         found = False
         for product in products:
             if product["id"] == id:
@@ -279,7 +295,7 @@ def PATCH():
             except:
                 print("You must introduce an integer!")
         url = url + str(id)
-        clients = requests.get(baseUrl).json()
+        clients = requests.get(baseUrl)
         found = False
         for client in clients:
             if client["id"] == id:
@@ -344,7 +360,7 @@ def PATCH():
         baseUrl = url + "products/"
         id = int(input("Which product would you like to update: "))
         url = url + str(id)
-        products = requests.get(baseUrl).json()
+        products = requests.get(baseUrl)
         found = False
         for product in products:
             if product["id"] == id:

@@ -1,5 +1,14 @@
 from Petitions import *
 
+def list():
+    print("CRUD List:")
+    print("    1) Add")
+    print("    2) Show list")
+    print("    3) Search")
+    print("    4) Update ")
+    print("    5) Delete")
+    print("    0) Exit")
+
 option = 10
 print("Welcome!")
 while option != 0:
@@ -34,12 +43,3 @@ while option != 0:
         print("Have a great day!")
     else:
         print("Please introduce a valid option!")
-
-def list():
-    print("CRUD List:")
-    print("    1) Add")
-    print("    2) Show list")
-    print("    3) Search")
-    print("    4) Update ")
-    print("    5) Delete")
-    print("    0) Exit")
