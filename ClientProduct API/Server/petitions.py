@@ -32,7 +32,7 @@ def findNextId1():
 def findNextId2():
     return max(product["id"] for product in file2) + 1
 
-@app.post("")
+@app.post("/clients")
 def postClient():
     if request.is_json:
         client = request.get_json()
@@ -42,7 +42,7 @@ def postClient():
         return client, 201
     return {"error": "Request must be a JSON file!"}, 415
 
-@app.post("")
+@app.post("/products")
 def postProduct():
     if request.is_json:
         product = request.get_json()
@@ -52,7 +52,7 @@ def postProduct():
         return product, 201
     return {"error": "Request must be a JSON file!"}, 415
 
-@app.put("")
+@app.put("/clients/<int:id>")
 def putClient(id):
     if request.is_json:
         newClient = request.get_json()
@@ -64,7 +64,7 @@ def putClient(id):
                 return client, 200
     return {"error": "Request must be a JSON file!"}
 
-@app.put("")
+@app.put("/products/<int:id>")
 def putProduct(id):
     if request.is_json:
         newProduct = request.get_json()
@@ -76,8 +76,8 @@ def putProduct(id):
                 return product, 200
     return {"error": "Request must be a JSON file!"}
 
-@app.put("")
-@app.patch("")
+@app.put("/clients/<int:id>")
+@app.patch("/clients/<int:id>")
 def patchClient(id):
     if request.is_json:
         newClient = request.get_json()
@@ -89,8 +89,8 @@ def patchClient(id):
                 return client, 200
     return {"error": "Request must be a JSON file!"}
 
-@app.put("")
-@app.patch("")
+@app.put("/products/<int:id>")
+@app.patch("/products/<int:id>")
 def patchProduct(id):
     if request.is_json:
         newProduct = request.get_json()
@@ -102,7 +102,7 @@ def patchProduct(id):
                 return product, 200
     return {"error": "Request must be a JSON file!"}
 
-@app.delete("")
+@app.delete("/clients/<int:id>")
 def deleteClient(id):
     for client in file1:
         if client["id"] == id:
@@ -111,7 +111,7 @@ def deleteClient(id):
             return {}, 200
     return {"error": "The following country was not found!"}, 404
 
-@app.delete("")
+@app.delete("/products/<int:id>")
 def deleteProduct(id):
     for product in file2:
         if product["id"] == id:

@@ -2,8 +2,8 @@ from flask import *
 
 app = Flask(__name__)
 
-fileName1 = "JSON//Client.json"
-fileName2 = "JSON//Product.json"
+fileName1 = "ClientProduct API\\JSON\\Client.json"
+fileName2 = "ClientProduct API\\JSON\\Product.json"
 
 def readFile1():
     file = open(fileName1, "r")
