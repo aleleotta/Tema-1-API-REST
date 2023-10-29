@@ -5,6 +5,7 @@ clientsFile = "ClientProduct API\\JSON\\Client.json"
 productsFile = "ClientProduct API\\JSON\\Product.json"
 
 def GET():
+    global url
     response = requests.get(url).json()
     print("Status code: ", response.status_code)
     if response.status_code == 200:
@@ -13,6 +14,7 @@ def GET():
         print("The JSON file couldn't be read or found.")
 
 def GET1():
+    global url
     type = 0
     while type != 1 and type != 2:
         try:
@@ -48,6 +50,7 @@ def GET1():
         print("The JSON file couldn't be read or found.")
 
 def POST():
+    global url
     type = 0
     while type != 1 and type != 2:
         try:
@@ -142,6 +145,7 @@ def POST():
             print("The product already exixts within the JSON file.")
 
 def PUT():
+    global url
     type = 0
     while type != 1 and type != 2:
         try:
@@ -256,6 +260,7 @@ def PUT():
             print("The product couldn't get updated or was not found.")
 
 def PATCH():
+    global url
     type = 0
     while type != 1 and type != 2:
         try:
@@ -391,6 +396,7 @@ def PATCH():
             print("The product couldn't get updated or was not found.")
 
 def DELETE():
+    global url
     type = 0
     while type != 1 and type != 2:
         try:

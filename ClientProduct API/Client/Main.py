@@ -10,15 +10,26 @@ while option != 0:
         print("The option must be an integer!")
         continue
     if option == 1:
-        GET()
+        POST()
     elif option == 2:
-        pass
+        GET()
     elif option == 3:
-        pass
+        GET1()
     elif option == 4:
-        pass
+        option1 = 10
+        while option1 != 1 and option1 != 2:
+            try:
+                option1 = int(print("Would you like to update an entire registry or a specific attribute in a registry? 1) Update all 2) Update specific attribute"))
+                if option1 != 1 and option1 != 2:
+                    print("Please introduce a valid option!")
+            except:
+                print("The option must be an integer!")
+        if option1 == 1:
+            PUT()
+        if option1 == 2:
+            PATCH()
     elif option == 5:
-        pass
+        DELETE()
     elif option == 0:
         print("Have a great day!")
     else:
