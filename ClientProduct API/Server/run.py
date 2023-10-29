@@ -6,13 +6,13 @@ app = Flask(__name__)
 fileName1 = "JSON//Client.json"
 fileName2 = "JSON//Product.json"
 
-def readFile1(fileName1):
+def readFile1():
     file = open(fileName1, "r")
     clients = json.load(file)
     file.close()
     return clients
 
-def readFile2(fileName2):
+def readFile2():
     file = open(fileName2, "r")
     products = json.load(file)
     file.close()
