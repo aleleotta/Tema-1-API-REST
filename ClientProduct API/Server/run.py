@@ -32,7 +32,7 @@ def writeFile2(products):
 
 @app.route("/")
 def index():
-    return "<h1><b>Welcome!</b></h1>"
+    return "<h1 style=\"font-family: 'Arial', 'Verdana', sans-serif;\">Welcome!</h1>"
 
 @app.get("/clients")
 def getClients():

@@ -374,7 +374,13 @@ def PATCH():
             url = "http://localhost:5050/"
     elif type == 2:
         baseUrl = url + "products/"
-        id = int(input("Which product would you like to update: "))
+        while id <= 0:
+            try:
+                id = int(input("Which client would you like to update: "))
+                if id <= 0:
+                    print("You must introduce an ID greater than 0.")
+            except:
+                print("You must introduce an integer!")
         url = url + str(id)
         products = requests.get(baseUrl)
         found = False
