@@ -18,8 +18,10 @@ def GET():
     print("Status code: ", response.status_code)
     if response.status_code == 200:
         print(response.json())
+        url = "http://localhost:5050/"
     else:
         print("The JSON file couldn't be read or found.")
+        url = "http://localhost:5050/"
 
 def GET1():
     global url
@@ -60,8 +62,10 @@ def GET1():
     print("Status code: ", response.status_code)
     if response.status_code == 200:
         print(response.json())
+        url = "http://localhost:5050/"
     else:
         print("The JSON file couldn't be read or found.")
+        url = "http://localhost:5050/"
 
 def POST():
     global url
@@ -130,10 +134,13 @@ def POST():
             if response.status_code == 201:
                 print(response.json())
                 print("The client has been posted.")
+                url = "http://localhost:5050/"
             else:
                 print("The client was unable to get posted.")
+                url = "http://localhost:5050/"
         else:
             print("The product already exixts within the JSON file.")
+            url = "http://localhost:5050/"
     elif type == 2:
         url = url + "products/"
         products = requests.get(url)
@@ -155,10 +162,13 @@ def POST():
             if response.status_code == 201:
                 print(response.json())
                 print("The product has been posted.")
+                url = "http://localhost:5050/"
             else:
                 print("The product was unable to get posted.")
+                url = "http://localhost:5050/"
         else:
             print("The product already exixts within the JSON file.")
+            url = "http://localhost:5050/"
 
 def PUT():
     global url
@@ -224,8 +234,10 @@ def PUT():
         if response.status_code == 200:
             print(response.json)
             print("The product has been updated.")
+            url = "http://localhost:5050/"
         else:
             print("The client couldn't get updated or was not found.")
+            url = "http://localhost:5050/"
     elif type == 2:
         baseUrl = url + "products/"
         while id <= 0:
@@ -272,8 +284,10 @@ def PUT():
         if response.status_code == 200:
             print(response.json)
             print("The product has been updated.")
+            url = "http://localhost:5050/"
         else:
             print("The product couldn't get updated or was not found.")
+            url = "http://localhost:5050/"
 
 def PATCH():
     global url
@@ -354,8 +368,10 @@ def PATCH():
         if response.status_code == 200:
             print(response.json)
             print("The product has been updated.")
+            url = "http://localhost:5050/"
         else:
             print("The client couldn't get updated or was not found.")
+            url = "http://localhost:5050/"
     elif type == 2:
         baseUrl = url + "products/"
         id = int(input("Which product would you like to update: "))
@@ -408,8 +424,10 @@ def PATCH():
         if response.status_code == 200:
             print(response.json)
             print("The product has been updated.")
+            url = "http://localhost:5050/"
         else:
             print("The product couldn't get updated or was not found.")
+            url = "http://localhost:5050/"
 
 def DELETE():
     global url
@@ -436,8 +454,10 @@ def DELETE():
         print("Status code: ", response.status_code)
         if response.status_code == 200:
             print("The client was successfully deleted.")
+            url = "http://localhost:5050/"
         else:
             print("The client wasn't found.")
+            url = "http://localhost:5050/"
     elif type == 2:
         url = url + "products/"
         id = 0
@@ -453,5 +473,7 @@ def DELETE():
         print("Status code: ", response.status_code)
         if response.status_code == 200:
             print("The product was successfully deleted.")
+            url = "http://localhost:5050/"
         else:
             print("The product wasn't found.")
+            url = "http://localhost:5050/"
