@@ -92,7 +92,8 @@ def POST():
         i = 1
         for client in clients:
             i = i + 1
-            if client['dni'] == dni:
+            copyDni = client['dni'].encode('utf-8')
+            if copyDni == dni:
                 found = True
                 break
         if found == False:
@@ -152,7 +153,8 @@ def POST():
         i = 1
         for product in products:
             i = i + 1
-            if product['name'] == name:
+            copyName = product['name'].encode('utf-8')
+            if copyName == name:
                 found = True
                 break
         if found == False:
@@ -193,51 +195,55 @@ def PUT():
         clients = requests.get(baseUrl)
         found = False
         for client in clients:
-            if client['id'] == id:
+            copyClient = client['id'].encode('utf-8')
+            if copyClient == id:
                 found = True
                 break
-        name = 0
-        while name == "":
-            try:
-                name = input("Introduce name: ")
-                if name == "":
-                    print("Please do not leave the name empty.")
-            except:
-                print("Please introduce a valid name!")
-        lastName = 0
-        while lastName == "":
-            try:
-                lastName = input("Introduce last name: ")
-                if lastName == "":
-                    print("Please do not leave the last name empty.")
-            except:
-                print("Please introduce a valid last name!")
-        phoneNumber = 0
-        while len(phoneNumber) != 10:
-            try:
-                phoneNumber = int(input("Introduce phone number: "))
-                if len(phoneNumber) != 10:
-                    print("Please introduce a phone number that has 10 digits.")
-            except:
-                print("Please introduce a valid phone number!")
-        email = ""
-        while email == "":
-            try:
-                email = input("Introduce email: ")
-                if email == "":
-                    print("Please do not leave the email empty.")
-            except:
-                print("Please introduce a valid email!")
-        client = {'name': name, 'lastName': lastName, 'phoneNumber': phoneNumber, 'email': email}
-        response = requests.put(url, json=client)
-        print("Status code: ", response.status_code)
-        if response.status_code == 200:
-            print(response.json)
-            print("The product has been updated.")
-            url = "http://localhost:5050/"
+        if found == True:
+            name = 0
+            while name == "":
+                try:
+                    name = input("Introduce name: ")
+                    if name == "":
+                        print("Please do not leave the name empty.")
+                except:
+                    print("Please introduce a valid name!")
+            lastName = 0
+            while lastName == "":
+                try:
+                    lastName = input("Introduce last name: ")
+                    if lastName == "":
+                        print("Please do not leave the last name empty.")
+                except:
+                    print("Please introduce a valid last name!")
+            phoneNumber = 0
+            while len(phoneNumber) != 10:
+                try:
+                    phoneNumber = int(input("Introduce phone number: "))
+                    if len(phoneNumber) != 10:
+                        print("Please introduce a phone number that has 10 digits.")
+                except:
+                    print("Please introduce a valid phone number!")
+            email = ""
+            while email == "":
+                try:
+                    email = input("Introduce email: ")
+                    if email == "":
+                        print("Please do not leave the email empty.")
+                except:
+                    print("Please introduce a valid email!")
+            client = {'name': name, 'lastName': lastName, 'phoneNumber': phoneNumber, 'email': email}
+            response = requests.put(url, json=client)
+            print("Status code: ", response.status_code)
+            if response.status_code == 200:
+                print(response.json)
+                print("The product has been updated.")
+                url = "http://localhost:5050/"
+            else:
+                print("The client couldn't get updated or was not found.")
+                url = "http://localhost:5050/"
         else:
-            print("The client couldn't get updated or was not found.")
-            url = "http://localhost:5050/"
+            print("The client wasn't found.")
     elif type == 2:
         baseUrl = url + "products/"
         while id <= 0:
@@ -251,43 +257,47 @@ def PUT():
         products = requests.get(baseUrl)
         found = False
         for product in products:
-            if product['id'] == id:
+            copyProduct = product['id'].encode('utf-8')
+            if copyProduct == id:
                 found = True
                 break
-        description = ""
-        while description == "":
-            try:
-                description = input("Introduce description: ")
-                if description == "":
-                    print("Please do not leave the description empty.")
-            except:
-                print("Please introduce a valid description!")
-        price = 0
-        while price <= 0: 
-            try:
-                price = float(input("Introduce price: "))
-                if price <= 0:
-                    print("Please introduce a price greater than 0.")
-            except:
-                print("Please introduce a valid price!")
-        clientID = 0
-        while clientID <= 0:
-            try:
-                clientID = int(input("Introduce client ID: "))
-                if clientID <= 0:
-                    print("Please introduce a client ID greater than 0.")
-            except:
-                print("Please introduce a valid client ID!")
-        product = {'description': description, 'price': price, 'clientID': clientID}
-        response = requests.put(url, json=product)
-        print("Status code: ", response.status_code)
-        if response.status_code == 200:
-            print(response.json)
-            print("The product has been updated.")
-            url = "http://localhost:5050/"
+        if found == True:
+            description = ""
+            while description == "":
+                try:
+                    description = input("Introduce description: ")
+                    if description == "":
+                        print("Please do not leave the description empty.")
+                except:
+                    print("Please introduce a valid description!")
+            price = 0
+            while price <= 0: 
+                try:
+                    price = float(input("Introduce price: "))
+                    if price <= 0:
+                        print("Please introduce a price greater than 0.")
+                except:
+                    print("Please introduce a valid price!")
+            clientID = 0
+            while clientID <= 0:
+                try:
+                    clientID = int(input("Introduce client ID: "))
+                    if clientID <= 0:
+                        print("Please introduce a client ID greater than 0.")
+                except:
+                    print("Please introduce a valid client ID!")
+            product = {'description': description, 'price': price, 'clientID': clientID}
+            response = requests.put(url, json=product)
+            print("Status code: ", response.status_code)
+            if response.status_code == 200:
+                print(response.json)
+                print("The product has been updated.")
+                url = "http://localhost:5050/"
+            else:
+                print("The product couldn't get updated or was not found.")
+                url = "http://localhost:5050/"
         else:
-            print("The product couldn't get updated or was not found.")
-            url = "http://localhost:5050/"
+            print("The product wasn't found.")
 
 def PATCH():
     global url
@@ -313,66 +323,70 @@ def PATCH():
         clients = requests.get(baseUrl)
         found = False
         for client in clients:
-            if client['id'] == id:
+            copyClient = client['id'].encode('utf-8')
+            if copyClient == id:
                 found = True
                 break
-        attribute = 0
-        while attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
-            try:
-                attribute = int(input("Which attribute would you like to update? 1) Name 2) Last name 3) Phone number 4) Email"))
-                if attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
-                    print("Please introduce a valid option!")
-            except:
-                print("You must introduce an integer!")
-        if attribute == 1:
-            name = 0
-            while name == "":
+        if found == True:
+            attribute = 0
+            while attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
                 try:
-                    name = input("Introduce name: ")
-                    if name == "":
-                        print("Please do not leave the name empty.")
+                    attribute = int(input("Which attribute would you like to update? 1) Name 2) Last name 3) Phone number 4) Email"))
+                    if attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
+                        print("Please introduce a valid option!")
                 except:
-                    print("Please introduce a valid name!")
-            client = {'name': name}
-        elif attribute == 2:
-            lastName = 0
-            while lastName == "":
-                try:
-                    lastName = input("Introduce last name: ")
-                    if lastName == "":
-                        print("Please do not leave the last name empty.")
-                except:
-                    print("Please introduce a valid last name!")
-            client = {'lastName': lastName}
-        elif attribute == 3:
-            phoneNumber = 0
-            while len(phoneNumber) != 10:
-                try:
-                    phoneNumber = int(input("Introduce phone number: "))
-                    if len(phoneNumber) != 10:
-                        print("Please introduce a phone number that has 10 digits.")
-                except:
-                    print("Please introduce a valid phone number!")
-            client = {'phoneNumber': phoneNumber}
-        elif attribute == 4:
-            email = ""
-            while email == "":
-                try:
-                    email = input("Introduce email: ")
-                    if email == "":
-                        print("Please do not leave the email empty.")
-                except:
-                    print("Please introduce a valid email!")
-            client = {'email': email}
-        response = requests.patch(url, json=client)
-        print("Status code: ", response.status_code)
-        if response.status_code == 200:
-            print(response.json)
-            print("The product has been updated.")
-            url = "http://localhost:5050/"
+                    print("You must introduce an integer!")
+            if attribute == 1:
+                name = 0
+                while name == "":
+                    try:
+                        name = input("Introduce name: ")
+                        if name == "":
+                            print("Please do not leave the name empty.")
+                    except:
+                        print("Please introduce a valid name!")
+                client = {'name': name}
+            elif attribute == 2:
+                lastName = 0
+                while lastName == "":
+                    try:
+                        lastName = input("Introduce last name: ")
+                        if lastName == "":
+                            print("Please do not leave the last name empty.")
+                    except:
+                        print("Please introduce a valid last name!")
+                client = {'lastName': lastName}
+            elif attribute == 3:
+                phoneNumber = 0
+                while len(phoneNumber) != 10:
+                    try:
+                        phoneNumber = int(input("Introduce phone number: "))
+                        if len(phoneNumber) != 10:
+                            print("Please introduce a phone number that has 10 digits.")
+                    except:
+                        print("Please introduce a valid phone number!")
+                client = {'phoneNumber': phoneNumber}
+            elif attribute == 4:
+                email = ""
+                while email == "":
+                    try:
+                        email = input("Introduce email: ")
+                        if email == "":
+                            print("Please do not leave the email empty.")
+                    except:
+                        print("Please introduce a valid email!")
+                client = {'email': email}
+            response = requests.patch(url, json=client)
+            print("Status code: ", response.status_code)
+            if response.status_code == 200:
+                print(response.json)
+                print("The product has been updated.")
+                url = "http://localhost:5050/"
+            else:
+                print("The client couldn't get updated.")
+                url = "http://localhost:5050/"
         else:
-            print("The client couldn't get updated or was not found.")
-            url = "http://localhost:5050/"
+            print("The client wasn't found")
     elif type == 2:
         baseUrl = url + "products/"
         id = 0
@@ -387,55 +401,60 @@ def PATCH():
         products = requests.get(baseUrl)
         found = False
         for product in products:
-            if product['id'] == id:
+            copyProducto = product['id'].encode('utf-8')
+            if copyProducto == id:
                 found = True
                 break
-        while attribute != 1 and attribute != 2 and attribute != 3:
-            try:
-                attribute = int(input("Which attribute would you like to update? 1) Description 2) Price 3) Client ID"))
-                if attribute != 1 and attribute != 2 and attribute != 3:
-                    print("Please introduce a valid option!")
-            except:
-                print("You must introduce an integer!")
-        if attribute == 1:
-            description = ""
-            while description == "":
+        if found == True:
+            attribute = 0
+            while attribute != 1 and attribute != 2 and attribute != 3:
                 try:
-                    description = input("Introduce description: ")
-                    if description == "":
-                        print("Please do not leave the description empty.")
+                    attribute = int(input("Which attribute would you like to update? 1) Description 2) Price 3) Client ID"))
+                    if attribute != 1 and attribute != 2 and attribute != 3:
+                        print("Please introduce a valid option!")
                 except:
-                    print("Please introduce a valid description!")
-            product = {'description': description}
-        elif attribute == 2:
-            price = 0
-            while price <= 0: 
-                try:
-                    price = float(input("Introduce price: "))
-                    if price <= 0:
-                        print("Please introduce a price greater than 0.")
-                except:
-                    print("Please introduce a valid price!")
-            product = {'price': price}
-        elif attribute == 3:
-            clientID = 0
-            while clientID <= 0:
-                try:
-                    clientID = int(input("Introduce client ID: "))
-                    if clientID <= 0:
-                        print("Please introduce a client ID greater than 0.")
-                except:
-                    print("Please introduce a valid client ID!")
-            product = {'clientID': clientID}
-        response = requests.patch(url, json=product)
-        print("Status code: ", response.status_code)
-        if response.status_code == 200:
-            print(response.json)
-            print("The product has been updated.")
-            url = "http://localhost:5050/"
+                    print("You must introduce an integer!")
+            if attribute == 1:
+                description = ""
+                while description == "":
+                    try:
+                        description = input("Introduce description: ")
+                        if description == "":
+                            print("Please do not leave the description empty.")
+                    except:
+                        print("Please introduce a valid description!")
+                product = {'description': description}
+            elif attribute == 2:
+                price = 0
+                while price <= 0: 
+                    try:
+                        price = float(input("Introduce price: "))
+                        if price <= 0:
+                            print("Please introduce a price greater than 0.")
+                    except:
+                        print("Please introduce a valid price!")
+                product = {'price': price}
+            elif attribute == 3:
+                clientID = 0
+                while clientID <= 0:
+                    try:
+                        clientID = int(input("Introduce client ID: "))
+                        if clientID <= 0:
+                            print("Please introduce a client ID greater than 0.")
+                    except:
+                        print("Please introduce a valid client ID!")
+                product = {'clientID': clientID}
+            response = requests.patch(url, json=product)
+            print("Status code: ", response.status_code)
+            if response.status_code == 200:
+                print(response.json)
+                print("The product has been updated.")
+                url = "http://localhost:5050/"
+            else:
+                print("The product couldn't get updated or was not found.")
+                url = "http://localhost:5050/"
         else:
-            print("The product couldn't get updated or was not found.")
-            url = "http://localhost:5050/"
+            print("The product wasn't found.")
 
 def DELETE():
     global url
