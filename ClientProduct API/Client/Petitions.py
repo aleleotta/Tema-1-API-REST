@@ -92,7 +92,7 @@ def POST():
         i = 1
         for client in clients:
             i = i + 1
-            if client["dni"] == dni:
+            if client['dni'] == dni:
                 found = True
                 break
         if found == False:
@@ -152,7 +152,7 @@ def POST():
         i = 1
         for product in products:
             i = i + 1
-            if product["name"] == name:
+            if product['name'] == name:
                 found = True
                 break
         if found == False:
@@ -193,7 +193,7 @@ def PUT():
         clients = requests.get(baseUrl)
         found = False
         for client in clients:
-            if client["id"] == id:
+            if client['id'] == id:
                 found = True
                 break
         name = 0
@@ -251,7 +251,7 @@ def PUT():
         products = requests.get(baseUrl)
         found = False
         for product in products:
-            if product["id"] == id:
+            if product['id'] == id:
                 found = True
                 break
         description = ""
@@ -301,6 +301,7 @@ def PATCH():
             print("You must introduce an integer!")
     if type == 1:
         baseUrl = url + "clients/"
+        id = 0
         while id <= 0:
             try:
                 id = int(input("Which client would you like to update: "))
@@ -312,7 +313,7 @@ def PATCH():
         clients = requests.get(baseUrl)
         found = False
         for client in clients:
-            if client["id"] == id:
+            if client['id'] == id:
                 found = True
                 break
         attribute = 0
@@ -374,6 +375,7 @@ def PATCH():
             url = "http://localhost:5050/"
     elif type == 2:
         baseUrl = url + "products/"
+        id = 0
         while id <= 0:
             try:
                 id = int(input("Which client would you like to update: "))
@@ -385,7 +387,7 @@ def PATCH():
         products = requests.get(baseUrl)
         found = False
         for product in products:
-            if product["id"] == id:
+            if product['id'] == id:
                 found = True
                 break
         while attribute != 1 and attribute != 2 and attribute != 3:
