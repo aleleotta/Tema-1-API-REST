@@ -1,7 +1,11 @@
 from flask import *
-from app import *
+from app.clients.routes import clientsBP
+from app.products.routes import productsBP
 
 app = Flask(__name__)
+
+app.register_blueprint(clientsBP, url_prefix="/clients")
+app.register_blueprint(productsBP, url_prefix="/clients")
 
 fileName1 = "ClientProduct API\\JSON\\Client.json"
 fileName2 = "ClientProduct API\\JSON\\Product.json"
@@ -17,19 +21,6 @@ def readFile2():
     products = json.load(file)
     file.close()
     return products
-
-file1 = readFile1()
-file2 = readFile2()
-
-def writeFile1(clients):
-    file = open(fileName1, "w")
-    json.dump(clients, file)
-    file.close()
-
-def writeFile2(products):
-    file = open(fileName2, "w")
-    json.dump(products, file)
-    file.close()
 
 @app.route("/")
 def index():

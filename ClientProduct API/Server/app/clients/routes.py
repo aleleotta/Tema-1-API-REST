@@ -1,8 +1,20 @@
 from flask import *
-from run import writeFile1
 
 fileName = "ClientProduct API\\JSON\\Client.json"
 clientsBP = Blueprint("clients", __name__)
+
+def readFile():
+    file = open(fileName, "r")
+    clients = json.load(file)
+    file.close()
+    return clients
+
+file = readFile()
+
+def writeFile(clients):
+    file = open(fileName, "w")
+    json.dump(clients, file)
+    file.close()
 
 @clientsBP.get("/clients")
 def getClients():
