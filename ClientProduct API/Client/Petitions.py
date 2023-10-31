@@ -392,17 +392,17 @@ def PATCH():
         id = 0
         while id <= 0:
             try:
-                id = int(input("Which product would you like to update: "))
+                id = int(input("Which client would you like to update: "))
                 if id <= 0:
                     print("You must introduce an ID greater than 0.")
             except:
                 print("You must introduce an integer!")
         url = url + str(id)
         products = requests.get(baseUrl)
-        productList = products
         found = False
-        for product in productList:
-            if product["id"] == id:
+        for product in products:
+            copyProducto = product['id'].encode('utf-8')
+            if copyProducto == id:
                 found = True
                 break
         if found == True:
