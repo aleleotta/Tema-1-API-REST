@@ -15,14 +15,14 @@ def getSpecificClient(id):
             return client, 200
     return {"error": "The following client wasn't found!"}, 404
 
-def findNextId1():
+def findNextId():
     return max(client["id"] for client in fileName) + 1
 
 @clientsBP.post("/clients")
 def postClient():
     if request.is_json:
         client = request.get_json()
-        client["id"] = findNextId1()
+        client["id"] = findNextId()
         fileName.append(client)
         writeFile1(fileName)
         return client, 201

@@ -15,14 +15,14 @@ def getSpecificProduct(id):
             return product, 200
     return {"error": "The following product wasn't found!"}, 404
 
-def findNextId2():
+def findNextId():
     return max(product["id"] for product in fileName) + 1
 
 @productsBP.post("/products")
 def postProduct():
     if request.is_json:
         product = request.get_json()
-        product["id"] = findNextId2()
+        product["id"] = findNextId()
         fileName.append(product)
         writeFile2(fileName)
         return product, 201
