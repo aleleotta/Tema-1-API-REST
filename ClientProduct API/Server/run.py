@@ -1,4 +1,6 @@
 from flask import *
+from app.clients.routes import clientsBP
+from app.products.routes import productsBP
 
 app = Flask(__name__)
 
