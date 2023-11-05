@@ -28,7 +28,7 @@ while option != 0:
         option1 = 10
         while option1 != 1 and option1 != 2:
             try:
-                option1 = int(input("Would you like to update an entire registry or a specific attribute in a registry? 1) Update all 2) Update specific attribute"))
+                option1 = int(input("Would you like to update an entire registry or a specific attribute in a registry? 1) Update all 2) Update specific attribute\n"))
                 if option1 != 1 and option1 != 2:
                     print("Please introduce a valid option!")
             except:

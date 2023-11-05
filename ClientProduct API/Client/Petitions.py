@@ -28,7 +28,7 @@ def GET1():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Would you like to search for a client or a product? 1) Client 2) Product"))
+            type = int(input("Would you like to search for a client or a product? 1) Client 2) Product\n"))
             if type != 1 and type != 2:
                 print("Please introduce a valid option!")
         except:
@@ -72,7 +72,7 @@ def POST():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Would you like to introduce a client or a product? 1) Client 2) Product"))
+            type = int(input("Would you like to introduce a client or a product? 1) Client 2) Product\n"))
             if type != 1 and type != 2:
                 print("Please introduce a valid option!")
         except:
@@ -177,7 +177,7 @@ def PUT():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Would you like to update a client or a product? 1) Client 2) Product"))
+            type = int(input("Would you like to update a client or a product? 1) Client 2) Product\n"))
             if type != 1 and type != 2:
                 print("Please introduce a valid option!")
         except:
@@ -186,7 +186,7 @@ def PUT():
         baseUrl = url + "clients/"
         while id <= 0:
             try:
-                id = int(input("Which client would you like to update: "))
+                id = int(input("Which client ID would you like to update: "))
                 if id <= 0:
                     print("You must introduce an ID greater than 0.")
             except:
@@ -248,7 +248,7 @@ def PUT():
         baseUrl = url + "products/"
         while id <= 0:
             try:
-                id = int(input("Which product would you like to update: "))
+                id = int(input("Which product ID would you like to update: "))
                 if id <= 0:
                     print("You must introduce an ID greater than 0.")
             except:
@@ -304,7 +304,7 @@ def PATCH():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Would you like to update a client or a product? 1) Client 2) Product"))
+            type = int(input("Would you like to update a client or a product? 1) Client 2) Product\n"))
             if type != 1 and type != 2:
                 print("Please introduce a valid option!")
         except:
@@ -314,7 +314,7 @@ def PATCH():
         id = 0
         while id <= 0:
             try:
-                id = int(input("Which client would you like to update: "))
+                id = int(input("Which client ID would you like to update: "))
                 if id <= 0:
                     print("You must introduce an ID greater than 0.")
             except:
@@ -331,7 +331,7 @@ def PATCH():
             attribute = 0
             while attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
                 try:
-                    attribute = int(input("Which attribute would you like to update? 1) Name 2) Last name 3) Phone number 4) Email"))
+                    attribute = int(input("Which attribute would you like to update? 1) Name 2) Last name 3) Phone number 4) Email\n"))
                     if attribute != 1 and attribute != 2 and attribute != 3 and attribute != 4:
                         print("Please introduce a valid option!")
                 except:
@@ -392,7 +392,7 @@ def PATCH():
         id = 0
         while id <= 0:
             try:
-                id = int(input("Which client would you like to update: "))
+                id = int(input("Which client ID would you like to update: "))
                 if id <= 0:
                     print("You must introduce an ID greater than 0.")
             except:
@@ -409,7 +409,7 @@ def PATCH():
             attribute = 0
             while attribute != 1 and attribute != 2 and attribute != 3:
                 try:
-                    attribute = int(input("Which attribute would you like to update? 1) Description 2) Price 3) Client ID"))
+                    attribute = int(input("Which attribute would you like to update? 1) Description 2) Price 3) Client ID\n"))
                     if attribute != 1 and attribute != 2 and attribute != 3:
                         print("Please introduce a valid option!")
                 except:
@@ -461,7 +461,7 @@ def DELETE():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Would you like to delete a client or a product? 1) Client 2) Product"))
+            type = int(input("Would you like to delete a client or a product? 1) Client 2) Product\n"))
             if type != 1 and type != 2:
                 print("Please introduce a valid option!")
         except:
