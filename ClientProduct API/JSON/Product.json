@@ -1,5 +1,23 @@
 [
-    {"id": 1, "name": "Rifle ammo", "description": "Should do the trick for most rifles in the battlefield.", "price": 85, "clientID": 1},
-    {"id": 2, "name": "Sniper ammo", "description": "Should do the trick for most snipers in the battlefield.", "price": 200, "clientID": 2},
-    {"id": 3, "name": "Thermal clips", "description": "Should do the trick for most next gen rifles in the battlefield.", "price": 250, "clientID": 3}
+    {
+        "id": 1,
+        "name": "Rifle ammo",
+        "description": "Should do the trick for most rifles in the battlefield.",
+        "price": 85,
+        "clientID": 1
+    },
+    {
+        "id": 2,
+        "name": "Sniper ammo",
+        "description": "Should do the trick for most snipers in the battlefield.",
+        "price": 200,
+        "clientID": 2
+    },
+    {
+        "id": 3,
+        "name": "Thermal clips",
+        "description": "Should do the trick for most next gen rifles in the battlefield.",
+        "price": 250,
+        "clientID": 3
+    }
 ]

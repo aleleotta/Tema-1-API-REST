@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, json, request
+from flask import Blueprint, jsonify, request
 from ReadWriteOps import *
 
 clientsBP = Blueprint("clients", __name__)
