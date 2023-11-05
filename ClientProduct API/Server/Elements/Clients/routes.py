@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import *
 from ReadWriteOps import *
 
 clientsBP = Blueprint("clients", __name__)
@@ -21,6 +22,7 @@ def findNextId():
     return max(client["id"] for client in readFile(fileName)) + 1
 
 @clientsBP.post("/")
+@jwt_required()
 def postClient():
     if request.is_json:
         client = request.get_json()
@@ -31,6 +33,7 @@ def postClient():
     return {"error": "Request must be a JSON file!"}, 415
 
 @clientsBP.put("/<int:id>")
+@jwt_required()
 def putClient(id):
     if request.is_json:
         newClient = request.get_json()
@@ -44,6 +47,7 @@ def putClient(id):
 
 @clientsBP.put("/<int:id>")
 @clientsBP.patch("/<int:id>")
+@jwt_required()
 def patchClient(id):
     if request.is_json:
         newClient = request.get_json()
@@ -56,6 +60,7 @@ def patchClient(id):
     return {"error": "Request must be a JSON file!"}
 
 @clientsBP.delete("/<int:id>")
+@jwt_required()
 def deleteClient(id):
     for client in readFile(fileName):
         if client["id"] == id:

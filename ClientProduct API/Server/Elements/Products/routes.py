@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import *
 from ReadWriteOps import *
 
 productsBP = Blueprint("products", __name__)
@@ -21,6 +22,7 @@ def findNextId():
     return max(product["id"] for product in readFile(fileName)) + 1
 
 @productsBP.post("/")
+@jwt_required()
 def postProduct():
     if request.is_json:
         product = request.get_json()
@@ -31,6 +33,7 @@ def postProduct():
     return {"error": "Request must be a JSON file!"}, 415
 
 @productsBP.put("/<int:id>")
+@jwt_required()
 def putProduct(id):
     if request.is_json:
         newProduct = request.get_json()
@@ -44,6 +47,7 @@ def putProduct(id):
 
 @productsBP.put("/<int:id>")
 @productsBP.patch("/<int:id>")
+@jwt_required()
 def patchProduct(id):
     if request.is_json:
         newProduct = request.get_json()
@@ -56,6 +60,7 @@ def patchProduct(id):
     return {"error": "Request must be a JSON file!"}
 
 @productsBP.delete("/<int:id>")
+@jwt_required()
 def deleteProduct(id):
     for product in readFile(fileName):
         if product["id"] == id:
