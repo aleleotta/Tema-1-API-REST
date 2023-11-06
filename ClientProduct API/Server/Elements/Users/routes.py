@@ -31,7 +31,7 @@ def getUser():
         username = user["username"]
         password = user["password"].encode("utf-8")
         for userFile in users:
-            if userFile[username] == username:
+            if userFile["username"] == username:
                 passwordFile = userFile["password"]
                 if bcrypt.checkpw(password, bytes.fromhex(passwordFile)):
                     token = create_access_token(identity=username)

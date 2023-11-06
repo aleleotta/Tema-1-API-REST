@@ -327,10 +327,12 @@ def PATCH():
                 print("You must introduce an integer!")
         url = url + str(id)
         clients = requests.get(baseUrl)
+        clientsJson = clients.json()
         found = False
+        dni = ""
         for client in clients:
-            copyClient = client['id'].encode('utf-8')
-            if copyClient == id:
+            if client['id'] == id:
+                dni = client['dni']
                 found = True
                 break
         if found == True:
@@ -343,7 +345,7 @@ def PATCH():
                 except:
                     print("You must introduce an integer!")
             if attribute == 1:
-                name = 0
+                name = ""
                 while name == "":
                     try:
                         name = input("Introduce name: ")
@@ -353,7 +355,7 @@ def PATCH():
                         print("Please introduce a valid name!")
                 client = {'name': name}
             elif attribute == 2:
-                lastName = 0
+                lastName = ""
                 while lastName == "":
                     try:
                         lastName = input("Introduce last name: ")
@@ -406,9 +408,10 @@ def PATCH():
         url = url + str(id)
         products = requests.get(baseUrl)
         found = False
+        name = ""
         for product in products:
-            copyProducto = product['id'].encode('utf-8')
-            if copyProducto == id:
+            if product['id'] == id:
+                name = product['name']
                 found = True
                 break
         if found == True:
@@ -449,7 +452,16 @@ def PATCH():
                             print("Please introduce a client ID greater than 0.")
                     except:
                         print("Please introduce a valid client ID!")
-                product = {'clientID': clientID}
+                checkUrl = "http://localhost:5050/clients"
+                ifExist = requests.get(checkUrl)
+                found1 = False
+                for client in ifExist:
+                    if client['id'] == clientID:
+                        found1 = True
+                        product = {'clientID': clientID}
+                    else:
+                        print("The client with the following ID doesn't exist.")
+                        break
             response = requests.patch(url, json=product)
             print("Status code: ", response.status_code)
             if response.status_code == 200:
