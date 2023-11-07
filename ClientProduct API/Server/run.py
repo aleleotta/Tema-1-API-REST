@@ -13,7 +13,7 @@ def passwordEncrypter(): # This function is responsible for randomizing characte
     return password # Returns the password once the function is done generating.
 
 app = Flask(__name__)
-app.config["PASSWORD"] = passwordEncrypter() #A random encrypted password is generated. Example: B'!fo5"0\O/y)Rg!f=kC0F6iH?H`U\.
+app.config["SECRET_KEY"] = passwordEncrypter() #A random encrypted password is generated. Example: B'!fo5"0\O/y)Rg!f=kC0F6iH?H`U\.
 jwt = JWTManager(app) # JWT Manager is initialized.
 
 #All blueprints are registered along with their following code.
